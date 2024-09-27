@@ -15,7 +15,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
-import java.util.List;
+
 
 public class FormValidation {
 
@@ -37,19 +37,27 @@ public class FormValidation {
     @Test
     public void formvalidation(){
         try {
-            WebElement firstNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("firstname")));
+           WebElement firstNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("firstname")));
             firstNameField.sendKeys("Ankit");
             WebElement lastNameField = driver.findElement(By.name("lastname"));
             lastNameField.sendKeys("Sharma");
             WebElement malecheckbox = driver.findElement(By.id("sex-0"));
-            malecheckbox.click();
+            if(!malecheckbox.isSelected()){
+                malecheckbox.click();
+            }
             WebElement experienceCheckbox = driver.findElement(By.id("exp-0"));
             experienceCheckbox.click();
+            if (!experienceCheckbox.isSelected()){
+                experienceCheckbox.click();
+            }
             WebElement professionalCheck = driver.findElement(By.id("profession-0"));
             professionalCheck.click();
             professionalCheck.clear();
             WebElement professionalCheck2 = driver.findElement(By.id("profession-1"));
             professionalCheck2.click();
+            if (!professionalCheck2.isSelected()){
+                professionalCheck2.click();
+            }
             WebElement dropdownElement = driver.findElement(By.id("controls"));
             Select dropdown = new Select(dropdownElement);
             dropdown.selectByVisibleText("Asia");
